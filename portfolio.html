@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myportfolio</title>
+    <link
+			rel="stylesheet"
+			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+			integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+			crossorigin="anonymous"
+        />
+        <script src="https://kit.fontawesome.com/yourcode.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+    <div class="container">
+        <img   alt="profile picture" id="profilePic" width='300',height='300'>
+        <h4 id="name"></h4>
+        
+        <div class='follow'><p id="followers"><i class="fas fa-band-aid"></i></p>
+            <p id= "following"></p>
+        </div>
+        <p id="bio">your are awesome</p>
+        <a  id="gitLink">Click Here to visit Github</a>
+       
+        
+    </div>
+    <script>
+        fetch('https://api.github.com/users/mahnisschaudhary')
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+            var followersCount = data['followers']
+            var followingCount = data['following']
+            console.log(followersCount)
+            var followersinfo = `Followers: ${followersCount} `
+            var followingInfo = `Following: ${followingCount} `
+            document.getElementById('name').textContent = data['name']
+            document.getElementById('profilePic').src = data["avatar_url"]
+            document.getElementById('bio').textContent = data['bio']
+            document.getElementById('gitLink').href = data['html_url']
+            document.getElementById('followers').textContent = followersinfo
+            document.getElementById('following').textContent = followingInfo
+            
+
+           
+        
+                            });
+    </script>
+</body>
+</html>
