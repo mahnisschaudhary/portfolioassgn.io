@@ -17,16 +17,18 @@ body {
 
 .container{
     box-shadow:(--shadow);
-    border:2px solid green;
+  
     width:40%;
     
     background: var(--primary);
     color: (--dark);
-        
+    float:left;
 }
 .container img{
     border-radius:50%;
     margin-left:83px;
+    position:relative;
+    width:50%;
 }
 .container >h4,p{
     margin-left:170px;
@@ -38,5 +40,151 @@ body {
 
 }
 .container a{
+    display: block;
+    width: 100px;
+    margin-left: 170px;
    margin-left:170px;
+}
+.repo>h3{
+    text-align:center;
+}
+.repo1{
+    float:left;
+    margin-left:10px;
+    height:400px;
+    width:29%;
+    background:var(--primary);
+    box-shadow:(--shadow);
+    box-sizing:border-box;
+}
+.repo1  img{
+    position: relative;
+    width: 88%;
+    height: 51%;
+    padding: 10px;
+    margin-left: 10px;
+    margin-left: 10px;
+    display: block;
+
+}
+.repo2{
+    float:left;
+    margin-left:10px;
+    height:400px;
+    width:29%;
+    background:var(--primary);
+    box-shadow:(--shadow);
+}
+.repo2 img{
+    position: relative;
+    width: 88%;
+    height: 51%;
+    padding: 10px;
+    margin-left: 10px;
+    margin-left: 10px;
+    display: block;
+
+}
+ .repo p, a{
+    
+    margin-left:19px;
+}
+/* media queries */
+  @media screen and (max-width:1200px){
+      .repo1{
+        
+          width:46%;
+      }
+
+      .repo2{
+          margin-top:5px;
+        width:46%;
+      }
+      .container{
+          width:51%;
+      }
+      .follow{
+          margin-left:-70px;
+      }
+      .container>h4{
+          margin-left:100px;
+          position:relative;
+      }
+      .container a{
+          margin-left:30px;
+      }
+  }
+
+  }
+  @media screen and (max-width:817px){
+      .container>h4{
+          margin-left:31px;
+      }
+      .follow{
+        margin-left:-139px;
+    }
+    .container a{
+        margin-left:30px;
+    }
+    .repo1{
+        
+        width:46%;
+    }
+
+    .repo2{
+      width:46%;
+      margin-top:5px;
+    }
+}
+@media screen and (max-width:662px){
+    .container{
+        height:118vh;
+    }
+    .container a{
+       padding-bottom:2px;
+      
+    }
+    .repo1{
+        height:107vh;
+    }
+    .repo2{
+       
+        width:95%;
+    }
+}
+
+@media screen and (max-width:585px){
+    .container{
+        width:100%;
+        height:80vh;
+      
+    }
+    .container>h4{
+
+         margin-left:100px;
+    }
+    .follow{
+      margin-left:-47px;
+  }
+    .container a{
+        position:relative;
+        margin-left:30px;
+        padding-bottom:10px;
+    }
+    .repo> h3{
+        padding-top:4px;
+    }
+
+    .repo1{
+            
+        width:100%;
+        margin-left:0px;
+        height:60vh;
+    }
+
+    .repo2{
+        width:100%;
+        margin-left:0px;
+        margin-top:5px;
+    }
 }

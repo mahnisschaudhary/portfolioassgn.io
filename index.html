@@ -1,52 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myportfolio</title>
-    <link
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Myportfolio</title>
+		<!-- <link
 			rel="stylesheet"
 			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 			integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 			crossorigin="anonymous"
-        />
-        <script src="https://kit.fontawesome.com/yourcode.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-</head>
-<body>
-    <div class="container">
-        <img   alt="profile picture" id="profilePic" width='300',height='300'>
-        <h4 id="name"></h4>
-        
-        <div class='follow'><p id="followers"><i class="fas fa-band-aid"></i></p>
-            <p id= "following"></p>
-        </div>
-        <p id="bio">your are awesome</p>
-        <a  id="gitLink">Click Here to visit Github</a>
-       
-        
-    </div>
-    <script>
-        fetch('https://api.github.com/users/mahnisschaudhary')
-        .then((response) => response.json())
-        .then(function (data) {
-            console.log(data);
-            var followersCount = data['followers']
-            var followingCount = data['following']
-            console.log(followersCount)
-            var followersinfo = `Followers: ${followersCount} `
-            var followingInfo = `Following: ${followingCount} `
-            document.getElementById('name').textContent = data['name']
-            document.getElementById('profilePic').src = data["avatar_url"]
-            document.getElementById('bio').textContent = data['bio']
-            document.getElementById('gitLink').href = data['html_url']
-            document.getElementById('followers').textContent = followersinfo
-            document.getElementById('following').textContent = followingInfo
+        /> -->
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<img alt="profile picture" id="profilePic" width="300" ,height="300" />
+			<h4 id="name"></h4>
+
+			<div class="follow">
+				<p id="followers"></p>
+				<p id="following"></p>
+				<p id="repos"></p>
+				<p id="country"></p>
+			</div>
+			<p id="bio"></p>
+            <a id="gitLink" target='-blank'>Click Here to visit Github</a>
+		</div>
+		<section class="repo">
+			<h3>My Repository</h3>
+			<div class="repo1" id="reppo1">
+                <img src="cssgridimage2.png" >
+				<p id="name1"></p>
+				<p id="createdDate1"></p>
+			
+				<a alt="link1" id="link1" target='_blank'>Click here to visit to git link</a>
+			</div>
+			<div class="repo2" id="reppo2">
+                <img src="cssgridimage.png">
+				<p id="name2"></p>
+				<p id="createdDate2"></p>
+				<a alt="link2" id="link2" target='_blank'>Click here to visit to git link</a>
+
+			
+			</div>
+		</section>
+		<script>
+			fetch('https://api.github.com/users/mahnisschaudhary')
+			.then((response) => response.json())
+			.then(function (data) {
+			    console.log(data);
+			    var followersCount = data['followers']
+			    var followingCount = data['following']
+			    console.log(followersCount)
+			    var repos=data['public_repos']
+			    console.log(repos)
+			    var countryName=data['location']
+			    var publicRepo=`Public Repository published: ${repos}`
+			    var followersinfo = `Followers: ${followersCount} `
+			    var followingInfo = `Following: ${followingCount} `
+			    var countryInfo = `Location: ${countryName} `
+			    document.getElementById('name').textContent = data['name']
+			    document.getElementById('profilePic').src = data["avatar_url"]
+			    document.getElementById('bio').textContent = data['bio']
+			    document.getElementById('gitLink').href = data['html_url']
+			    document.getElementById('followers').textContent = followersinfo
+			    document.getElementById('following').textContent = followingInfo
+			    document.getElementById('repos').textContent = publicRepo
+			    document.getElementById('country').textContent = countryInfo
+
+            });
             
 
-           
-        
-                            });
-    </script>
-</body>
+			    fetch("https://api.github.com/users/mahnisschaudhary/repos")
+			    .then(response => response.json())
+			    .then(function(data){
+
+
+			              //  repo1
+			                 var Name=data[0]['name']
+
+			                 var createdDate=data[0]['pushed_at']
+
+			                 var nameInfo=`Title: ${Name}`
+			                 var createdDateInfo=` Created date: ${createdDate}`
+			                  document.getElementById('name1').textContent =  nameInfo
+			                  document.getElementById('createdDate1').textContent = createdDateInfo
+			                 document.getElementById('link1').href=data[0]['html_url']
+
+			                 //repo2
+			                 var Name=data[1]['name']
+
+			                 var createdDate=data[1]['pushed_at']
+
+			                  var nameInfo=`Title: ${Name}`
+			                  var createdDateInfo=` Created date: ${createdDate}`
+			                   document.getElementById('name2').textContent =  nameInfo
+			                   document.getElementById('createdDate2').textContent = createdDateInfo
+
+			                   document.getElementById('link2').href=data[1]['html_url']
+			                   /*
+			        for(var i; i<=length ;i++){
+			        var Name=data[i]['name']
+
+			                 var createdDate=data[i]['pushed_at']
+
+			                 var nameInfo=`Title: ${Name}`
+			                 var createdDateInfo=` Created date: ${createdDate}`
+			                  document.getElementById('name1').textContent =  nameInfo
+			                  document.getElementById('createdDate1').textContent = createdDateInfo
+			                  var url=data[j]['html_url']
+			                  console.log(url)
+			                  document.getElementById('link1').href=data[j]['html_url']
+			                  var nameInfo=`Title: ${Name}`
+			                  var createdDateInfo=` Created date: ${createdDate}`
+			                   document.getElementById('name2').textContent =  nameInfo
+			                   document.getElementById('createdDate2').textContent = createdDateInfo
+			                   var url=data[j]['html_url']
+			                   console.log(url)
+			                   document.getElementById('link2').href=data[j]['html_url']
+
+			               }
+			         /* for ( var j=0; j<=i; j++){
+			             if(j==0){
+
+			                         var nameInfo=`Title: ${Name}`
+			                         var createdDateInfo=` Created date: ${createdDate}`
+			                          document.getElementById('name1').textContent =  nameInfo
+			                          document.getElementById('createdDate1').textContent = createdDateInfo
+			                          var url=data[j]['html_url']
+			                          console.log(url)
+			                          document.getElementById('link1').href=data[j]['html_url']
+			                      }
+			                   if(j=1){
+			                         var nameInfo=`Title: ${Name}`
+			                         var createdDateInfo=` Created date: ${createdDate}`
+			                          document.getElementById('name2').textContent =  nameInfo
+			                          document.getElementById('createdDate2').textContent = createdDateInfo
+			                          var url=data[j]['html_url']
+			                          console.log(url)
+			                          document.getElementById('link2').href=data[j]['html_url']
+
+			                      }  
+			         }
+
+
+			        }*/
+			    })
+		</script>
+	</body>
 </html>
